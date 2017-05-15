@@ -24,7 +24,7 @@ object JolPlugin extends sbt.AutoPlugin {
   override def projectSettings = Seq(
     run in jol := runJolTask(fullClasspath in Compile).dependsOn(compile in Compile).evaluated,
     
-    version in jol := "0.5",
+    version in jol := "0.8",
     
     vmDetails in jol := runVmDetailsTask().evaluated,
     estimates in jol := runJolTask("estimates", fullClasspath in Compile).dependsOn(compile in Compile).evaluated,
@@ -67,7 +67,7 @@ object JolPlugin extends sbt.AutoPlugin {
 
     val jolCoreJar = getArtifact("org.openjdk.jol" % "jol-core" % jolVersion, ivySbt, log)
     val jolCliJar = getArtifact("org.openjdk.jol" % "jol-cli" % jolVersion, ivySbt, log)
-    val joptJar = getArtifact("net.sf.jopt-simple" % "jopt-simple" % "4.6", ivySbt, log) // TODO could be more nicely exposed as options
+    val joptJar = getArtifact("net.sf.jopt-simple" % "jopt-simple" % "4.7", ivySbt, log) // TODO could be more nicely exposed as options
     val jolDeps = jolCliJar :: jolCoreJar :: joptJar :: Nil
     
     val allArg = s"${args.mkString(" ")} ${cpOption(cpFiles.toList)}"

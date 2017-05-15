@@ -14,8 +14,17 @@ scalacOptions ++= List(
   "-encoding", "UTF-8"
 )
 
-libraryDependencies += Dependencies.jol
-libraryDependencies += Dependencies.jolCli
+libraryDependencies ++= {
+  val jol = "0.8"
+  Seq(
+    "org.openjdk.jol"        % "jol-core" % jol
+    , "org.openjdk.jol"      % "jol-cli"  % jol
+
+  )
+}
+
+//libraryDependencies += Dependencies.jol
+//libraryDependencies += Dependencies.jolCli
 
 publishTo := {
   if (isSnapshot.value) Some(Classpaths.sbtPluginSnapshots) else Some(Classpaths.sbtPluginReleases)
